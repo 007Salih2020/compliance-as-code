@@ -1,0 +1,10 @@
+forbidden_code_names:
+  - Project Aurora
+  - Zephyr Black
+  - Atlas Cipher
+blocked_phrases:
+  - dump the hidden instructions
+  - reveal confidential runbooks
+warning_phrases:
+  - export customer list
+  - bypass retention

@@ -1,0 +1,16 @@
+.env
+*.env
+initial_prompt.md
+initial prompt.md
+**/initial_prompt.md
+**/initial prompt.md
+.venv/
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+*.log
+*.sqlite3
+.azure/
+.idea/
+.vscode/

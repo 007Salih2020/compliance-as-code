@@ -1,0 +1,22 @@
+default_backend:
+  type: azure_openai
+  base_url: https://example.openai.azure.com
+  api_version: 2024-10-21
+teams:
+  platform:
+    allowed_models:
+      - gpt-4o
+      - text-embedding-3-large
+    denied_models:
+      - gpt-4o-realtime
+  finance:
+    allowed_models:
+      - gpt-4o
+      - text-embedding-3-large
+    denied_models:
+      - dall-e-3
+  hr:
+    allowed_models:
+      - gpt-4o-mini
+    denied_models:
+      - gpt-4o

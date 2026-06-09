@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environment": {
+      "value": "dev"
+    },
+    "location": {
+      "value": "westeurope"
+    },
+    "namePrefix": {
+      "value": "ozkan"
+    },
+    "containerImage": {
+      "value": "replace-me.azurecr.io/ozkan-gateway:latest"
+    },
+    "deployUi": {
+      "value": false
+    },
+    "uiImage": {
+      "value": "replace-me.azurecr.io/ozkan-gateway-ui:latest"
+    },
+    "azureOpenAiAccountName": {
+      "value": "aoai-dev"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+<policies>
+  <inbound>
+    <base />
+    <validate-jwt header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized">
+      <openid-config url="https://login.microsoftonline.com/{{entra-tenant-id}}/v2.0/.well-known/openid-configuration" />
+      <audiences>
+        <audience>{{gateway-audience}}</audience>
+      </audiences>
+    </validate-jwt>
+    <set-variable name="correlationId" value="@(context.Request.Headers.GetValueOrDefault(&quot;x-correlation-id&quot;, Guid.NewGuid().ToString()))" />
+    <set-header name="x-correlation-id" exists-action="override">
+      <value>@((string)context.Variables["correlationId"])</value>
+    </set-header>
+    <choose>
+      <when condition="@(context.Request.Body?.Length > 16384)">
+        <return-response>
+          <set-status code="413" reason="Payload Too Large" />
+        </return-response>
+      </when>
+    </choose>
+    <rate-limit-by-key calls="60" renewal-period="60" counter-key="@(context.Request.Headers.GetValueOrDefault(&quot;x-team&quot;, &quot;unknown&quot;))" />
+    <authentication-managed-identity resource="https://cognitiveservices.azure.com" />
+    <set-backend-service base-url="{{gateway-backend-url}}" />
+  </inbound>
+  <backend>
+    <base />
+  </backend>
+  <outbound>
+    <base />
+    <set-header name="x-correlation-id" exists-action="override">
+      <value>@((string)context.Variables["correlationId"])</value>
+    </set-header>
+  </outbound>
+  <on-error>
+    <base />
+  </on-error>
+</policies>

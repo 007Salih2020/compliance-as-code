@@ -1,0 +1,39 @@
+{
+  "info": {
+    "name": "Ozkan Gateway",
+    "_postman_id": "b2e9011b-3d83-4ef5-8c70-0ef313d7e0b1",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/health"
+      }
+    },
+    {
+      "name": "Chat",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "content-type", "value": "application/json" },
+          { "key": "x-user-id", "value": "analyst@contoso.com" },
+          { "key": "x-app-id", "value": "fin-assistant" },
+          { "key": "x-team", "value": "finance" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"model\":\"gpt-4o\",\"deployment_name\":\"gpt-4o-prod\",\"messages\":[{\"role\":\"user\",\"content\":\"Summarize the quarter-end control exceptions.\"}]}"
+        },
+        "url": "{{baseUrl}}/api/v1/chat"
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    }
+  ]
+}
