@@ -14,3 +14,11 @@ __pycache__/
 .azure/
 .idea/
 .vscode/
+
+# Private prompt files
+initial_prompt.md
+initital_prompt.md
+initial prompt.md
+**/initial_prompt.md
+**/initital_prompt.md
+**/initial prompt.md
